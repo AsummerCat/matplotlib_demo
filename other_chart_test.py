@@ -98,6 +98,20 @@ def bar_chart():
 
 def pie_chart():
     #https://www.imooc.com/video/14983
+    plt.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
+    # 标签
+    labels = ['娱乐', '育儿', '饮食', '房贷', '交通', '其它']
+    # 数据
+    sizes = [2, 5, 12, 70, 2, 9]
+    #
+    explode = (0, 0, 0, 0, 0, 0)
+    # 构造拼图      自动百分比  显示阴影 弧度
+    plt.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%', shadow=False, startangle=150)
+    # 标题
+    plt.title("饼图示例-8月份家庭支出")
+
+    # 显示图表
+    plt.show()
     pass
 
 
@@ -107,5 +121,5 @@ if __name__ == '__main__':
     # 柱状图
     # bar_chart()
     # 饼图
-
+    pie_chart()
     pass
