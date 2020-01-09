@@ -153,6 +153,8 @@ def pie_chart():
     # borderaxespad = 0.3图例的内边距
 
     # 将饼图显示为正圆形
+    # plt.gca().set_aspect('equal')
+    # 或者
     plt.axis('equal')
     # 保存图表
     plt.savefig(r"E:\饼图02.png", dpi=200, bbox_inches='tight')

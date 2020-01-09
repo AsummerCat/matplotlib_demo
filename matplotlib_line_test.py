@@ -8,7 +8,6 @@ import numpy as np
 折线图图表 测试
 '''
 
-
 '''
 绘制余弦 正弦 
 '''
@@ -130,10 +129,134 @@ w: white
     plt.show()
 
 
+'''
+折线图
+'''
+
+
+def polar_line():
+    x = np.arange(2, 26, 2)  # x坐标
+    y = [15, 13, 14, 5, 17, 20, 25, 26, 24, 22, 18, 15]
+    # 设置图片大小
+    plt.figure(figsize=(20, 8), dpi=80)  # figsize设置图片大小，dpi设置清晰度
+    plt.plot(x, y, label='Y1')  # 绘制y1
+    plt.plot(x, np.cos(y), lw=1, c='g', marker='o', label='Y2')  # 绘制y2
+    # 设置x轴的刻度
+    plt.xticks(x)
+    # 设置y轴的刻度
+    plt.yticks(range(min(y), max(y) + 1))  # 最后一位取不到，所以要加1
+
+    # plt.xlim(0, 26)  # x轴坐标范围
+    # plt.ylim(1, 100)  # y轴坐标范围
+    plt.xlabel('X-Name')  # x轴标注
+    plt.ylabel('Y-Name')  # y轴标注
+    plt.legend()  # 图例
+    # 保存
+    # plt.savefig("./t1.png")
+    plt.show()
+
+
+'''
+圆形图
+'''
+
+
+def roundness_chart():
+    x = np.arange(2, 26, 2)  # x坐标
+    y = [15, 13, 14, 5, 17, 20, 25, 26, 24, 22, 18, 15]
+    # 设置图片大小
+    plt.figure(figsize=(20, 8), dpi=80)  # figsize设置图片大小，dpi设置清晰度
+    # 更改图形为圆形
+    plt.polar(x, y, label='Y1')  # 绘制y1
+    plt.polar(x, np.cos(y), lw=1, c='g', marker='o', label='Y2')  # 绘制y2
+    # 设置x轴的刻度
+    plt.xticks(x)
+    # 设置y轴的刻度
+    plt.yticks(range(min(y), max(y) + 1))  # 最后一位取不到，所以要加1
+
+    # plt.xlim(0, 26)  # x轴坐标范围
+    # plt.ylim(1, 100)  # y轴坐标范围
+    plt.xlabel('X-Name')  # x轴标注
+    plt.ylabel('Y-Name')  # y轴标注
+    plt.legend()  # 图例
+    # 保存
+    # plt.savefig("./t1.png")
+    plt.show()
+
+
+'''
+热力图
+'''
+
+
+def heatmap_chart():
+    from matplotlib import cm
+    # 设置图片大小
+    plt.figure(figsize=(20, 8), dpi=80)  # figsize设置图片大小，dpi设置清晰度
+    # 绘制的数据 3*5的随机数
+    data = np.random.rand(3, 5)
+    # 颜色
+    cmap = cm.Blues
+    # 构建热力图   相邻的相同的颜色连成片   自动缩放 颜色最大值 最小值设置
+    map = plt.imshow(data, interpolation='nearest', cmap=cmap, aspect='auto', vmax=1, vmin=0)
+    plt.show()
+
+
+'''
+3D图
+'''
+
+
+def three_chart():
+    from mpl_toolkits.mplot3d import Axes3D
+    # 绘制画布
+    fig = plt.figure()
+    # 创建3D
+    axes3d = Axes3D(fig)
+    x = np.arange(2, 26, 2)  # x坐标
+    y = [15, 13, 14, 5, 17, 20, 25, 26, 24, 22, 18, 15]
+    # 绘制散点
+    axes3d.scatter3D(x, y, np.log(x + y))
+    plt.show()
+
+
+''''
+热图
+'''
+
+
+def hot_chart():
+    # 绘制画布
+    fig = plt.figure()
+
+    # 计算x,y坐标对应的高度值
+    def f(x, y):
+        return (1 - x / 2 + x ** 3 + y ** 5) * np.exp(-x ** 2 - y ** 2)
+
+    n = 256
+    # 生成x,y的数据
+    x = np.linspace(-3, 3, n)
+    y = np.linspace(-3, 3, n)
+    # 把x,y数据生成mesh网格状的数据，因为等高线的显示是在网格的基础上添加上高度值
+    X, Y = np.meshgrid(x, y)
+    # 绘制热图 填充等高线
+    plt.contourf(X, Y, f(X, Y), 8, alpha=.75, cmap=plt.cm.hot)
+    plt.show()
+
+
 if __name__ == '__main__':
     # 正弦余弦函数
-    draw_cos_sin()
+    # draw_cos_sin()
     # 直线 "绘制2x+1的直线"
     # draw_line()
-
+    # 折线图
+    # polar_line()
+    # 圆形图
+    # roundness_chart()
+    # 热力图
+    # heatmap_chart()
+    # 3D图
+    # three_chart()
+    # 热图
+    hot_chart()
     pass
